@@ -5,13 +5,11 @@ DATA_FILE = "results.json"
 
 
 def calculate_bmi(weight: float, height_cm: float) -> float:
-    """Oblicza wskaźnik BMI i zaokrągla go do 2 miejsc po przecinku."""
     bmi = weight / ((height_cm / 100) ** 2)
     return round(bmi, 2)
 
 
 def classify_bmi(bmi: float) -> str:
-    """Zwraca interpretację wyniku BMI."""
     if bmi < 18.5:
         return "niedowaga"
     elif bmi < 25.0:
@@ -23,7 +21,6 @@ def classify_bmi(bmi: float) -> str:
 
 
 def read_positive_float(prompt: str, min_value: float, max_value: float) -> float:
-    """Pobiera i waliduje liczbę zmiennoprzecinkową z określonego przedziału."""
     while True:
         user_input = input(prompt).strip().replace(",", ".")
         if not user_input:
@@ -40,7 +37,6 @@ def read_positive_float(prompt: str, min_value: float, max_value: float) -> floa
 
 
 def read_non_empty_string(prompt: str) -> str:
-    """Pobiera niepusty ciąg znaków (np. imię)."""
     while True:
         value = input(prompt).strip()
         if value:
@@ -49,7 +45,6 @@ def read_non_empty_string(prompt: str) -> str:
 
 
 def add_person(results: list) -> None:
-    """Pobiera dane osoby, oblicza BMI i dodaje rekord do listy."""
     print("\n--- Dodawanie nowej osoby ---")
     name = read_non_empty_string("Podaj imię osoby: ")
     height = read_positive_float("Podaj wzrost w cm (80-250): ", 80.0, 250.0)
@@ -70,7 +65,6 @@ def add_person(results: list) -> None:
 
 
 def show_history(results: list) -> None:
-    """Wyświetla historię wszystkich zapisanych wyników."""
     print("\n--- Historia wyników ---")
     if not results:
         print("Historia wyników jest pusta.")
@@ -87,7 +81,6 @@ def show_history(results: list) -> None:
 
 
 def show_summary(results: list) -> None:
-    """Wyświetla podsumowanie statystyczne zapisanych wyników."""
     print("\n--- Podsumowanie wyników ---")
     if not results:
         print("Brak zapisanych wyników. Dodaj co najmniej jedną osobę, aby zobaczyć podsumowanie.")
@@ -120,9 +113,7 @@ def show_summary(results: list) -> None:
         print(f"  {cat}: {cat_count}")
 
 
-# --- Zadanie dodatkowe: Poziom + ---
 def delete_person(results: list) -> None:
-    """Usuwa wybrany rekord z historii na podstawie numeru porządkowego."""
     if not results:
         print("\nHistoria jest pusta – brak wyników do usunięcia.")
         return
@@ -140,9 +131,7 @@ def delete_person(results: list) -> None:
         print("Błąd: Podano niepoprawny numer.")
 
 
-# --- Zadanie dodatkowe: Poziom ++ ---
 def search_person(results: list) -> None:
-    """Wyszukuje osoby po fragmencie imienia (bez rozróżniania wielkości liter)."""
     if not results:
         print("\nHistoria jest pusta – brak wyników do przeszukania.")
         return
@@ -159,9 +148,7 @@ def search_person(results: list) -> None:
         print(f"{idx}. {person['name']} | BMI: {person['bmi']:.2f} | {person['category']}")
 
 
-# --- Zadanie dodatkowe: Poziom +++ ---
 def load_from_json(filename: str = DATA_FILE) -> list:
-    """Wczytuje historię wyników z pliku JSON przy starcie programu."""
     if not os.path.exists(filename):
         return []
     try:
@@ -174,7 +161,6 @@ def load_from_json(filename: str = DATA_FILE) -> list:
 
 
 def save_to_json(results: list, filename: str = DATA_FILE) -> None:
-    """Zapisuje historię wyników do pliku JSON przy zakończeniu programu."""
     try:
         with open(filename, "w", encoding="utf-8") as file:
             json.dump(results, file, ensure_ascii=False, indent=4)
@@ -184,7 +170,6 @@ def save_to_json(results: list, filename: str = DATA_FILE) -> None:
 
 
 def main() -> None:
-    """Główna pętla programu z menu tekstowym."""
     results = load_from_json()
 
     while True:
