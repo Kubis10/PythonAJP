@@ -1,15 +1,11 @@
-# Kalkulator BMI
+# Programowanie w Python – Laboratoria (Lab 1 & Lab 2)
 
-Konsolowa aplikacja w języku Python służąca do obliczania wskaźnika masy ciała (BMI), klasyfikacji wyniku oraz prowadzenia statystyk i historii pomiarów.
+Repozytorium zawiera rozwiązania zadań laboratoryjnych:
+- **Laboratorium 1:** Kalkulator BMI z interpretacją wyniku (`lab1_bmi.py`)
+- **Laboratorium 2:** Dziennik temperatury (`lab2_temperatura.py`)
 
 ## Uruchomienie
 
-1. Utwórz i aktywuj środowisko wirtualne:
+Uruchomienie menu głównego (wybór laboratorium):
 ```bash
-python -m venv venv
-# Windows (PowerShell):
-.\venv\Scripts\Activate.ps1
-# Windows (Git Bash):
-source venv/Scripts/activate
-# Linux / macOS:
-source venv/bin/activate
+python main.py
